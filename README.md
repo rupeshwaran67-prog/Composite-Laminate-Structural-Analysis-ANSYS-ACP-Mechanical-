@@ -1,59 +1,70 @@
-# Composite-Laminate-Structural-Analysis-ANSYS-ACP-Mechanical-
-Static structural FEA of a composite sandwich laminate panel, using ANSYS Composite PrepPost (ACP) for ply-wise layup definition and ANSYS Mechanical for deformation analysis under applied loading.
+# Composite Laminate Structural Analysis (ANSYS ACP and Mechanical)
 
-Overview
+Static structural FEA of a tapered composite sandwich panel, using ANSYS Composite PrepPost (ACP) for ply-by-ply layup definition and ANSYS Mechanical for deformation analysis.
 
-This project models a tapered composite panel using ANSYS ACP (Pre) to define the ply stack-up and ANSYS Mechanical (Static Structural) to evaluate total and directional deformation under load. The workflow demonstrates a full composite analysis pipeline: material definition → ply layup → solid model generation → structural solve → results post-processing.
+Search this file for `TODO` before publishing. Each one is a detail from your own model that a reviewer will look for.
 
-Setup
+## Setup
 
-ParameterValueSolverANSYS Mechanical (Static Structural)Layup toolANSYS Composite PrepPost (ACP Pre)MaterialsEpoxy Carbon Woven (230 GPa) Wet, Epoxy Carbon UD (230 GPa) Wet, Structural SteelBoundary conditionsFixed Support ×2, Applied ForceGeometryTapered laminate panel (SolidModel.1)Unitsmm, kg, N, s, mV, mA
+| Item | Value |
+|---|---|
+| Solver | ANSYS Mechanical (Static Structural) |
+| Layup tool | ANSYS Composite PrepPost (ACP Pre) |
+| Materials | Epoxy Carbon Woven (230 GPa, wet), Epoxy Carbon UD (230 GPa, wet). TODO: state which body uses Structural Steel, or remove it |
+| Geometry | Tapered laminate panel (SolidModel.1), TODO: overall dimensions |
+| Boundary conditions | Fixed Support x 2, applied force. TODO: which faces |
+| Applied load | TODO: magnitude (N) and direction |
+| Mesh | TODO: element type, element size and element count |
+| Units | mm, kg, N, s, mV, mA |
 
-Ply Layup (ACP)
+## Layup (ACP)
 
-The laminate was defined using ANSYS ACP with element-wise thickness assignment across multiple modeling plies (ModelingPly.1, .2, .4, .5) within a single Modeling Group. Ply thickness was set via element-wise extrusion guides referencing the full element set (All_Elements). The solid model was generated using the inside-ply drop-off type and shell-normal offset, with a maximum thickness of 1.0 mm.
+The laminate was defined with element-wise thickness assignment across modelling plies (ModelingPly.1, .2, .4, .5) in a single Modeling Group. Thickness was set through element-wise extrusion guides referencing the full element set (All_Elements). The solid model used inside-ply drop-off and a shell-normal offset, with a maximum thickness of 1.0 mm.
 
-[Add specific ply stacking sequence / fibre orientation angles here if available, e.g. [0°/90°/±45°]ₙ]
+| Ply | Material | Orientation | Thickness |
+|---|---|---|---|
+| TODO | TODO | TODO | TODO |
 
-Results
+TODO: fill the table from your ACP model tree (ply order, material, fibre angle, thickness).
 
-Total Deformation
+## Results
 
-ValueMinimum0 mmMaximum4.6981 × 10⁻³ mmAverage1.8965 × 10⁻³ mm
+**Total deformation**
 
-Total deformation is concentrated at the unsupported/free end of the panel, with deformation increasing progressively along the span away from the fixed supports — consistent with expected bending behaviour under the applied load.
+| Min | Max | Average |
+|---|---|---|
+| 0 mm | 4.6981e-3 mm | 1.8965e-3 mm |
 
-Directional Deformation (X-Axis)
+Deformation is greatest at the free end and grows along the span away from the fixed supports, consistent with bending.
 
-ValueMinimum-1.0436 × 10⁻⁵ mmMaximum1.0436 × 10⁻⁵ mmAverage4.991 × 10⁻¹¹ mm
+**Directional deformation (X)**
 
-The near-zero average directional deformation in X confirms the structure is primarily deforming in the through-thickness/bending direction rather than axially, as expected for this loading configuration.
+| Min | Max | Average |
+|---|---|---|
+| -1.0436e-5 mm | 1.0436e-5 mm | 4.991e-11 mm |
 
+X-direction deformation is more than two orders of magnitude smaller than total deformation, consistent with a bending-dominated response.
 
-Note: results were captured at two animation/load-step frames (0.89 s and 1.0 s) during post-processing — values are consistent across both, confirming a stable converged solution rather than a discrepancy.
+Results are shown at two animation frames (0.89 s and 1.0 s) and are consistent across both.
 
+## Failure Assessment
 
+TODO: add a failure index plot from ACP Post (for example Tsai-Wu or maximum stress) with the maximum value and its location. Deformation alone does not show whether a composite part survives its load.
 
-Tools Used
+## Automation
 
+TODO: attach the ACP Python script (as `acp_script.py`) and describe what it automates, or remove "Python scripting" from this README and your CV.
 
-ANSYS Mechanical (Static Structural)
-ANSYS Composite PrepPost (ACP Pre)
-Python scripting (ACP automation/logging, via ACP's embedded Python console)
+## Notes
 
+- CAD and solver result files are not included because of file size. Available on request.
+- TODO: add a one-line validation statement, such as a hand-calculation check of the deflection (beam or plate theory) with the percentage difference.
 
-Repository Contents
+## Tools
 
+ANSYS Mechanical (Static Structural), ANSYS ACP (Pre and Post), Python (ACP console)
 
-Deformation contours, ACP ply layup screenshots
-This file
+## Author
 
-
-Notes
-
-CAD and solver result files are not included in this repository due to file size. Available on request.
-
-Author
-
-Rupeshwaran Paranthaman — MSc Automotive Engineering, University of Hertfordshire
-github.com/rupeshwaran67-prog
+TODO: your full name, MSc Automotive Engineering, University of Hertfordshire
+GitHub: https://github.com/rupeshwaran67-prog
